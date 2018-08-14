@@ -2,7 +2,7 @@
 <Test>
     <Intrebare nr="1" categorie="Geografie">
         <imagine>clima.jpg</imagine>
-        <textIntrebare>Romania are clima:</textIntrebare>
+        <textIntrebare>România are clima:</textIntrebare>
         <Raspuns1>
             <tipElement>text</tipElement>
             <element>Temperat rece</element>
@@ -24,7 +24,7 @@
 
     <Intrebare nr="2" categorie="Geografie">
         <imagine>Subcarpatii.jpg</imagine>
-        <textIntrebare>Subcarpatii se desfasoara:</textIntrebare>
+        <textIntrebare>Subcarpații se desfașoară:</textIntrebare>
         <Raspuns1>
             <tipElement>text</tipElement>
             <element>La exteriorul arcului carpatic</element>
@@ -39,17 +39,17 @@
         </Raspuns3>
         <Raspuns4>
             <tipElement>text</tipElement>
-            <element>nicio variantă</element>
+            <element>Nicio variantă</element>
         </Raspuns4>
         <Corect>3</Corect>
     </Intrebare>
 
     <Intrebare nr="3" categorie="Geografie">
         <imagine>Cum_se_numesc_monumentele_naturii_din_Muntii_Bucegi.jpg</imagine>
-        <textIntrebare>Cum se numesc monumentele naturii din Muntii Bucegi?</textIntrebare>
+        <textIntrebare>Cum se numesc monumentele naturii din Munții Bucegi?</textIntrebare>
         <Raspuns1>
             <tipElement>text</tipElement>
-            <element>Sfinxul Banatean</element>
+            <element>Sfinxul Bănățean</element>
         </Raspuns1>
         <Raspuns2>
             <tipElement>text</tipElement>
@@ -57,11 +57,11 @@
         </Raspuns2>
         <Raspuns3>
             <tipElement>text</tipElement>
-            <element>Coloanele de Bazalt de la Racos</element>
+            <element>Coloanele de Bazalt de la Racoș</element>
         </Raspuns3>
         <Raspuns4>
             <tipElement>text</tipElement>
-            <element>Rapa Neagra</element>
+            <element>Râpa Neagră</element>
         </Raspuns4>
         <Corect>2</Corect>
     </Intrebare>
@@ -71,26 +71,26 @@
         <textIntrebare>Care sunt principalele forme de relief ale Deltei?</textIntrebare>
         <Raspuns1>
             <tipElement>text</tipElement>
-            <element>Grindurile(Mică ridicătură de teren de formă alungită din mijlocul apelor curgătoare sau ale mării, care rezultă din depuneri aluvionare)</element>
+            <element>Grinduri(Mică ridicătură de teren de formă alungită din mijlocul apelor curgătoare sau ale mării, care rezultă din depuneri aluvionare)</element>
         </Raspuns1>
         <Raspuns2>
             <tipElement>text</tipElement>
-            <element>Muntii</element>
+            <element>Munții</element>
         </Raspuns2>
         <Raspuns3>
             <tipElement>text</tipElement>
-            <element>Campiile</element>
+            <element>Campii</element>
         </Raspuns3>
         <Raspuns4>
             <tipElement>text</tipElement>
-            <element>Podisurile</element>
+            <element>Podișuri</element>
         </Raspuns4>
         <Corect>1</Corect>
     </Intrebare>
 
     <Intrebare nr="5" categorie="Geografie">
         <imagine>Tipul_de_relief_intalnit_in_Muntii_Apuseni.jpg</imagine>
-        <textIntrebare>Tipul de relief intalnit in Muntii Apuseni sunt</textIntrebare>
+        <textIntrebare>Tipul de relief întalnit în Munții Apuseni este ... </textIntrebare>
         <Raspuns1>
             <tipElement>text</tipElement>
             <element>Piemontan</element>
@@ -112,7 +112,7 @@
 
     <Intrebare nr="6" categorie="Geografie">
         <imagine>Ce_tipuri_de_influente_climatice_se_gasesc_in_Nordul_Carpatilor_Orientali.JPG</imagine>
-        <textIntrebare>Ce tipuri de influente climatice se gasesc in Nordul Carpatilor Orientali?</textIntrebare>
+        <textIntrebare>Ce tipuri de influențe climatice se găsesc în Nordul Carpaților Orientali?</textIntrebare>
         <Raspuns1>
             <tipElement>text</tipElement>
             <element>Pontice</element>
@@ -189,7 +189,7 @@
         </Raspuns2>
         <Raspuns3>
             <tipElement>text</tipElement>
-            <element>Câmpiei Române </element>
+            <element>Câmpiei Române</element>
         </Raspuns3>
         <Raspuns4>
             <tipElement>text</tipElement>
@@ -203,7 +203,7 @@
         <textIntrebare>Vieţuitoarele din Delta Dunării sunt:</textIntrebare>
         <Raspuns1>
             <tipElement>text</tipElement>
-            <element>pescăruşii, raţele, câinele enot, mistreţul, pelicanii</element>
+            <element>pescăruşul, raţa, câinele enot, mistreţul, pelicanul</element>
         </Raspuns1>
         <Raspuns2>
             <tipElement>text</tipElement>
@@ -211,7 +211,7 @@
         </Raspuns2>
         <Raspuns3>
             <tipElement>text</tipElement>
-            <element>caii, boii, oile, vacile, caprele</element>
+            <element>calul, boul, oaia, vaca, capra</element>
         </Raspuns3>
         <Raspuns4>
             <tipElement>text</tipElement>
