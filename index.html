@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <meta charset="UTF-8"> 
+    </head>   
+
+    <body>
+        <style>
+            .navbar {
+    overflow: hidden;
+    background-color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+        </style>
+        <script>
+            var xmlHTTP = new XMLHttpRequest();
+            function loadXML(test){
+                //var xmlHTTP = new XMLHttpRequest();
+                xmlHTTP.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200)
+                        intrebare(this, nrIntrebare);
+                }
+                //xmlHTTP.open("GET", "Intrebari.xml", true);
+                xmlHTTP.open("GET", "teste//" + test, true);
+                xmlHTTP.send();
+
+            }
+
+            var parser, xmlDoc, nrIntrebare, raspuns, raspunsuriCorecte;
+            var raspunsuri = new Array();
+
+            function intrebare(xml, indice){
+                var i, formular, xmlDoc;
+                xmlDoc = xml.responseXML;
+                var x =xmlDoc.getElementsByTagName("Intrebare");
+                //console.log("lungine " + x.length);
+                if(nrIntrebare < x.length){
+                    formular = '<form><div style="text-align:center;">';
+                    //document.write("-------------------<br/>");
+                    if(xmlDoc.getElementsByTagName("imagine")[indice].childNodes[0] != null){
+                        formular += "<img src=\"imagini\\";
+                        formular += xmlDoc.getElementsByTagName("imagine")[indice].childNodes[0].nodeValue;
+                        formular += "\" width=\"500\" height=\"300\"><br>";
+                    }
+
+                    formular += "<label id=\"textIntrebare\" style>" + xmlDoc.getElementsByTagName("textIntrebare")[indice].childNodes[0].nodeValue + "</label><br><br>";
+                    for(i = 4*indice; i <= 4*indice+3; i++){                   
+                        if(xmlDoc.getElementsByTagName("tipElement")[i].childNodes[0].nodeValue == "imagine"){
+                            formular += "<button name=\"buton\" type=\"button\" onclick=\"validare(" + (i%4 + 1)  + ")\"><img style=\"width:16em\" src=\"imagini\\" + xmlDoc.getElementsByTagName("element")[i].childNodes[0].nodeValue + "\"></button>";
+                            //document.write("imagine " + xmlDoc.getElementsByTagName("element")[i].childNodes[0].nodeValue + "<br />");
+                        }
+                        else{
+                            formular += "<button name=\"buton\" type=\"button\" onclick=\"validare(" + (i%4 + 1) + ")\">" + xmlDoc.getElementsByTagName("element")[i].childNodes[0].nodeValue +"</button>";
+                            //document.write(xmlDoc.getElementsByTagName("element")[i].childNodes[0].nodeValue + "<br />");
+                        }
+                    }
+
+                    raspuns = xmlDoc.getElementsByTagName("Corect")[indice].childNodes[0].nodeValue;
+
+                    formular += "</div></form><p id=\"test\"></p>";
+                    document.getElementById("home").innerHTML = "";
+                    document.getElementById("continutTest").innerHTML = formular;
+                    //nrIntrebare++;
+                }
+                else {
+                    // afisare scor
+                    document.getElementById("continutTest").innerHTML = "<div style=\"text-align:center;\">Felicitari! Ai raspuns la " + raspunsuriCorecte + " din " + x.length + " intrebari.</div>";
+                    // afisare raspunsuri
+                    console.log(raspunsuri);
+                    var temp = "<br><br>";
+                    for(i=0; i<nrIntrebare; i++){
+                        if(xmlDoc.getElementsByTagName("Corect")[i].childNodes[0].nodeValue == raspunsuri[i]){
+                            temp += "<div style=\"background-color:#66ff66;\">Raspuns corect <br>"; 
+                        }
+                        else {
+                            temp += "<div style=\"background-color:#ff6666;\"> Raspuns gresit <br>"; 
+                        }
+                        temp += "<label style>" + xmlDoc.getElementsByTagName("textIntrebare")[i].childNodes[0].nodeValue + "</label><br>";
+                        if(xmlDoc.getElementsByTagName("tipElement")[4*i+raspunsuri[i]-1].childNodes[0].nodeValue == "imagine"){
+                            temp += "<label style> Raspuns: <br>" + "<img style=\"width:16em\" src=\"imagini\\" + xmlDoc.getElementsByTagName("element")[4*i+raspunsuri[i]-1].childNodes[0].nodeValue + "\"></label><br>";
+                        }
+                        else{
+                            temp += "<label style> Raspuns: " + xmlDoc.getElementsByTagName("element")[4*i+raspunsuri[i]-1].childNodes[0].nodeValue + "</label><br>";
+                        }
+                        if(xmlDoc.getElementsByTagName("Corect")[i].childNodes[0].nodeValue != raspunsuri[i]){
+                            var variantaCorecta = xmlDoc.getElementsByTagName("Corect")[i].childNodes[0].nodeValue;
+                            console.log(4*i+parseInt(variantaCorecta));
+                            if(xmlDoc.getElementsByTagName("tipElement")[4*i+parseInt(variantaCorecta)-1].childNodes[0].nodeValue == "imagine"){
+                                temp += "<label style> Varianta corecta: <br>" + "<img style=\"width:16em\" src=\"imagini\\" + xmlDoc.getElementsByTagName("element")[4*i+parseInt(variantaCorecta)-1].childNodes[0].nodeValue + "\"></label>";
+                            }
+                            else{
+                                temp += "<label style> Varianta corecta: " + xmlDoc.getElementsByTagName("element")[4*i+parseInt(variantaCorecta)-1].childNodes[0].nodeValue + "</label>";
+                            }
+                        }
+                        temp += "</div><br>";
+                    }
+                    document.getElementById("afisareRezultateCorecte").innerHTML = temp;
+                }
+            }
+
+            //verifica daca intrebarea este corecta
+            function validare(varianta){
+                raspunsuri.push(varianta);
+                if( varianta == raspuns) raspunsuriCorecte ++;
+                nrIntrebare++;
+                intrebare(xmlHTTP, nrIntrebare);
+
+            }
+
+            function startTest(numeTest) {
+                nrIntrebare = 0;
+                raspunsuriCorecte = 0;
+                document.getElementById("afisareRezultateCorecte").innerHTML = "";
+                raspunsuri = [];
+                loadXML(numeTest);
+            }
+            
+        </script>
+
+
+        <div class="titlu">
+            <h1>Teste Geografia!!</h1>
+            <p>Cat de bine stii geografie?</p>
+        </div>     
+
+        <div class="centru" >
+
+            <!-- meniu -->
+            <div class="navbar">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">Teste</a>
+                    <div class="dropdown-content">
+                        <a onclick="startTest('intrebari_generale.xml')">Intrebari generale</a>
+                        <a onclick="startTest('test_lume.xml')">Despre lume</a>
+                        <a onclick="startTest('test_romania_cel-mai.xml')">Romania - cel mai ...</a>
+                        <a onclick="startTest('test_romania_relief-ape-clima.xml')">Romania - relief, ape, clima</a>
+                        <a onclick="startTest('test_romania_amenajari.xml')">Romania - amenajari</a>
+                    </div>
+                </div> 
+            </div><br>
+            <!-- end meniu -->
+            <div id="home">
+            <p> &emsp; &emsp; Hai sa vedem cat de bun esti la geografie!<br> &emsp; &emsp; Alege unul din testele din meniu, raspunde la intrebari si la final vezi cat de bun esti!</p>
+                <img src="map-3120436_1920.jpg" style="resize: horizontal; width: 35em; margin-left: auto; margin-right: auto; display: block;">
+                <br>
+            </div>
+
+            <div id="continutTest">
+
+            </div>
+
+            <div id="afisareRezultateCorecte">
+
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+
+    </body>
+</html>
